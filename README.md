@@ -5,8 +5,7 @@ sftp-connector for VANTIQ
 ## Usage
 1. register SFTP Source with ProtoBuf 
 2. create a source in VANTIQ
-3. start rabbitMQ server
-4. start the connector
+3. start the connector
 
 ## register
 Create a config file named *sftpSource.json*:
