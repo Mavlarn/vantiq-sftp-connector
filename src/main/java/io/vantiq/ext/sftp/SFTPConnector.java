@@ -1,12 +1,13 @@
 package io.vantiq.ext.sftp;
 
-import io.vantiq.ext.sdk.ConnectorConfig;
-import io.vantiq.ext.sdk.ExtensionWebSocketClient;
 import io.vantiq.ext.sftp.handler.*;
+import io.vantiq.extjsdk.ConnectorConfig;
+import io.vantiq.extjsdk.ExtensionWebSocketClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.integration.dsl.context.IntegrationFlowContext;
 import org.springframework.integration.file.remote.session.CachingSessionFactory;
 import org.springframework.stereotype.Component;
 
@@ -15,8 +16,9 @@ import java.io.Closeable;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-import static io.vantiq.ext.sdk.ConnectorConstants.CONNECTOR_CONNECT_TIMEOUT;
-import static io.vantiq.ext.sdk.ConnectorConstants.RECONNECT_INTERVAL;
+import static io.vantiq.extjsdk.ConnectorConstants.CONNECTOR_CONNECT_TIMEOUT;
+import static io.vantiq.extjsdk.ConnectorConstants.RECONNECT_INTERVAL;
+
 
 @Component
 public class SFTPConnector implements Closeable {
@@ -27,17 +29,21 @@ public class SFTPConnector implements Closeable {
     String sourceName;
     String vantiqUrl;
     String vantiqToken;
+
+
     CachingSessionFactory sessionFactory;
 
-    @Autowired
     private ConnectorConfig connectionInfo;
     @Autowired
     private ApplicationContext context;
+    @Autowired
+    private IntegrationFlowContext flowContext;
 
     public SFTPConnector() { }
 
     @PostConstruct
     public void start() {
+        connectionInfo = new ConnectorConfig();
         if (connectionInfo == null) {
             throw new RuntimeException("No VANTIQ connection information provided");
         }
@@ -107,6 +113,14 @@ public class SFTPConnector implements Closeable {
 
     public void setSessionFactory(CachingSessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
+    }
+
+    public IntegrationFlowContext getFlowContext() {
+        return flowContext;
+    }
+
+    public void setFlowContext(IntegrationFlowContext flowContext) {
+        this.flowContext = flowContext;
     }
 
     /**

@@ -1,11 +1,10 @@
 package io.vantiq.ext.sftp;
 
-import io.vantiq.ext.sdk.ConnectorConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SFTPConnectorApplication extends ConnectorConfig {
+public class SFTPConnectorApplication {
 
     public static void main(String[] args) {
 

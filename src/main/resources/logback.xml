@@ -22,8 +22,11 @@
         </encoder>
     </appender>
 
-    <!--<logger name="io.vantiq.ext.sftp" level="DEBUG"/>-->
-    <logger name="io.vantiq.ext" level="TRACE"/>
+    <logger name="io.vantiq.ext.sftp" level="DEBUG"/>
+    <logger name="org.springframework.integration" level="DEBUG"/>
+    <logger name="org.springframework.integration.aggregator.AggregatingMessageHandler" level="WARN"/>
+
+    <!--<logger name="io.vantiq.ext" level="TRACE"/>-->
     <logger name="ExtensionWebSocketListener" level="INFO"/>
 
 

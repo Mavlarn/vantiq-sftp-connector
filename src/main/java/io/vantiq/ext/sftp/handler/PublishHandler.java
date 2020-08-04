@@ -1,9 +1,9 @@
 package io.vantiq.ext.sftp.handler;
 
 import io.vantiq.ext.sftp.SFTPConnector;
-import io.vantiq.ext.sdk.ExtensionServiceMessage;
-import io.vantiq.ext.sdk.ExtensionWebSocketClient;
-import io.vantiq.ext.sdk.Handler;
+import io.vantiq.extjsdk.ExtensionServiceMessage;
+import io.vantiq.extjsdk.ExtensionWebSocketClient;
+import io.vantiq.extjsdk.Handler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
